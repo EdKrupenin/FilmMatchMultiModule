@@ -11,37 +11,38 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.rememberNavController
+import com.keo.source.core.core_api.AppWithApplicationComponent
+import com.keo.source.core.core_api.FeatureApi
 import com.keo.source.ui_kit.theme.FilmMatchTheme
 
 class MainActivity : ComponentActivity() {
+    private lateinit var featureApis: Set<FeatureApi>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+
+        val appWithApplicationComponent =
+            (application as AppWithApplicationComponent).getApplicationComponentProvider()
+
+        MainActivityComponent.create(appWithApplicationComponent)
+            .inject(this)
+
+        featureApis = appWithApplicationComponent.featureApis()
+
+
         setContent {
-            FilmMatchTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+            val navController = rememberNavController()
+            NavHost(
+                navController = navController,
+                startDestination = "home_screen"
+            ) {
+                featureApis.forEach { featureApi ->
+                    featureApi.registerGraph(this, navController, Modifier.padding(16.dp))
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    FilmMatchTheme {
-        Greeting("Android")
     }
 }

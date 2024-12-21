@@ -17,6 +17,8 @@ converter-gson = "2.10.0"
 okhttp = "4.12.0"
 ksp = "2.0.21-1.0.27"
 navigation-compose = "2.8.5"
+navigationCommonKtx = "2.8.5"
+navigationRuntimeKtx = "2.8.5"
 
 
 [libraries]
@@ -44,6 +46,8 @@ converter-gson = { group = "com.squareup.retrofit2", name = "converter-gson", ve
 okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
 logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation-compose" }
+androidx-navigation-common-ktx = { group = "androidx.navigation", name = "navigation-common-ktx", version.ref = "navigationCommonKtx" }
+androidx-navigation-runtime-ktx = { group = "androidx.navigation", name = "navigation-runtime-ktx", version.ref = "navigationRuntimeKtx" }
 
 
 [plugins]

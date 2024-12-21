@@ -1,3 +1,3 @@
 package com.keo.source.core.core_api
 
-interface ApplicationComponentProvider : NetworkProvider, AppProvider
+interface ApplicationComponentProvider : NetworkProvider, AppProvider, FeatureApiProvider

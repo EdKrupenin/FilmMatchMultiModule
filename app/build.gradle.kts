@@ -43,6 +43,7 @@ android {
 dependencies {
     implementation(project(":source:core:core_api"))
     implementation(project(":source:core:core_factory"))
+    implementation(project(":source:home:home_impl"))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
