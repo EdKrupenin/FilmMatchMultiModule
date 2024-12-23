@@ -8,8 +8,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.keo.source.ui_kit.atom.FiledButton
 
 @Composable
 internal fun HomeScreen(
@@ -27,11 +29,10 @@ internal fun HomeScreen(
             fontSize = 24.sp
         )
 
-//        Button(
-//            modifier = Modifier.padding(16.dp),
-//            onClick = onNavigateToABFlow
-//        ) {
-//            Text("Navigate to A-B scenario")
-//        }
+        FiledButton(
+            text = stringResource(R.string.swipeFeatureButton),
+            onClick = onNavigateToABFlow,
+            modifier = Modifier.padding(16.dp),
+        )
     }
 }

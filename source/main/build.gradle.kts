@@ -43,6 +43,7 @@ dependencies {
     implementation(libs.androidx.navigation.compose)
     implementation(project(":source:ui_kit"))
     implementation(project(":source:core:core_api"))
+    implementation(project(":source:home:home_api"))
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 

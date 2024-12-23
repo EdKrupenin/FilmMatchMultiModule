@@ -38,7 +38,7 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
-    implementation(project(":source:home:home_api"))
+    api(project(":source:home:home_api"))
     implementation(project(":source:core:core_api"))
     implementation(libs.androidx.navigation.common.ktx)
     implementation(libs.androidx.navigation.runtime.ktx)
@@ -50,6 +50,7 @@ dependencies {
 
     implementation(libs.dagger)
     implementation(libs.androidx.navigation.compose)
+    implementation(project(":source:ui_kit"))
     ksp(libs.daggerCompiler)
 
     testImplementation(libs.junit)

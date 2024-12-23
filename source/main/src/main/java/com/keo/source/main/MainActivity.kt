@@ -1,25 +1,27 @@
 package com.keo.source.main
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.keo.source.core.core_api.AppWithApplicationComponent
 import com.keo.source.core.core_api.FeatureApi
-import com.keo.source.ui_kit.theme.FilmMatchTheme
+import com.keo.source.core.core_api.FeatureApiMap
+import com.keo.source.core.core_api.findRoute
+import com.keo.source.core.core_api.register
+import com.keo.source.home.home_api.HomeFeatureApi
+import com.keo.source.main.di.MainActivityComponent
+import javax.inject.Inject
 
 class MainActivity : ComponentActivity() {
-    private lateinit var featureApis: Set<FeatureApi>
+    @Inject
+    lateinit var featureApis: FeatureApiMap
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,20 +29,29 @@ class MainActivity : ComponentActivity() {
         val appWithApplicationComponent =
             (application as AppWithApplicationComponent).getApplicationComponentProvider()
 
-        MainActivityComponent.create(appWithApplicationComponent)
-            .inject(this)
-
-        featureApis = appWithApplicationComponent.featureApis()
-
-
+        MainActivityComponent.create(appWithApplicationComponent).inject(this)
+        enableEdgeToEdge()
         setContent {
             val navController = rememberNavController()
+            val startDestination = featureApis.findRoute<HomeFeatureApi>()?.baseRoute()
+            requireNotNull(startDestination) { "Start destination cannot be null!" }
+            Log.d("MainActivity", "startDestination: $startDestination")
             NavHost(
-                navController = navController,
-                startDestination = "home_screen"
+                navController = navController, startDestination = startDestination
             ) {
-                featureApis.forEach { featureApi ->
-                    featureApi.registerGraph(this, navController, Modifier.padding(16.dp))
+                Log.d("MainActivity", "Registering route size: ${featureApis.keys.size}")
+                featureApis.values.forEach { provider ->
+                    val featureApi = provider.get() as? FeatureApi
+                    if (featureApi != null) {
+                        Log.d("MainActivity", "Registering route: ${featureApi.baseRoute()}")
+                        register(
+                            featureApi = featureApi,
+                            navController = navController,
+                            modifier = Modifier.padding(16.dp)
+                        )
+                    } else {
+                        Log.w("MainActivity", "Skipping non-FeatureApi object")
+                    }
                 }
             }
         }
