@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.keo.source.home.home_impl"
+    namespace = "com.keo.genres_impl"
     compileSdk = 34
 
     defaultConfig {
@@ -35,26 +35,16 @@ android {
 }
 
 dependencies {
-    api(project(":source:home:home_api"))
+    api(project(":source:genres:genres_api"))
     implementation(project(":source:core:core_api"))
-    implementation(project(":source:genres:genres_api"))
     implementation(project(":source:ui_kit"))
+    implementation(libs.dagger)
+    implementation(libs.androidx.navigation.compose)
+    ksp(libs.daggerCompiler)
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
-    implementation(libs.androidx.navigation.common.ktx)
-    implementation(libs.androidx.navigation.runtime.ktx)
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.ui)
-    implementation(libs.androidx.ui.graphics)
-    implementation(libs.androidx.ui.tooling.preview)
-    implementation(libs.androidx.material3)
-
-    implementation(libs.androidx.navigation.compose)
-    implementation(libs.retrofit)
-    implementation(libs.dagger)
-    ksp(libs.daggerCompiler)
-
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

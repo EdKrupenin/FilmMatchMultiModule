@@ -35,7 +35,6 @@ class MainActivity : ComponentActivity() {
             val navController = rememberNavController()
             val startDestination = featureApis.findRoute<HomeFeatureApi>()?.baseRoute()
             requireNotNull(startDestination) { "Start destination cannot be null!" }
-            Log.d("MainActivity", "startDestination: $startDestination")
             NavHost(
                 navController = navController, startDestination = startDestination
             ) {

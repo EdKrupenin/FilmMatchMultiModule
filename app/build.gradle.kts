@@ -44,6 +44,7 @@ dependencies {
     implementation(project(":source:core:core_api"))
     implementation(project(":source:core:core_factory"))
     implementation(project(":source:home:home_impl"))
+    implementation(project(":source:genres:genres_impl"))
     implementation(project(":source:main"))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

@@ -16,6 +16,9 @@
             <option value="$PROJECT_DIR$/source/core/core_api" />
             <option value="$PROJECT_DIR$/source/core/core_factory" />
             <option value="$PROJECT_DIR$/source/core/core_impl" />
+            <option value="$PROJECT_DIR$/source/genres" />
+            <option value="$PROJECT_DIR$/source/genres/genres_api" />
+            <option value="$PROJECT_DIR$/source/genres/genres_impl" />
             <option value="$PROJECT_DIR$/source/home" />
             <option value="$PROJECT_DIR$/source/home/home_api" />
             <option value="$PROJECT_DIR$/source/home/home_impl" />

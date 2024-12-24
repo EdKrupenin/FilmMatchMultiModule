@@ -1,6 +1,7 @@
 package com.keo.filmmatch
 
 import android.app.Application
+import com.keo.genres_impl.GenresFeatureExternalModule
 import com.keo.source.core.core_api.AppProvider
 import com.keo.source.core.core_api.ApplicationComponentProvider
 import com.keo.source.core.core_api.NetworkProvider
@@ -10,7 +11,7 @@ import dagger.Component
 
 @Component(
     dependencies = [AppProvider::class, NetworkProvider::class],
-    modules = [HomeFeatureExternalModule::class]
+    modules = [HomeFeatureExternalModule::class, GenresFeatureExternalModule::class]
 )
 interface ApplicationComponent : ApplicationComponentProvider {
     companion object {
