@@ -1,12 +1,11 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.ksp)
 }
 
 android {
-    namespace = "com.keo.source.main"
+    namespace = "com.keo.source.base"
     compileSdk = 34
 
     defaultConfig {
@@ -35,29 +34,11 @@ android {
 }
 
 dependencies {
-
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.ui)
-    implementation(libs.androidx.ui.graphics)
-    implementation(libs.androidx.ui.tooling.preview)
-    implementation(libs.androidx.navigation.compose)
-    implementation(project(":source:ui_kit"))
     implementation(project(":source:core:core_api"))
-    implementation(project(":source:home:home_api"))
-    implementation(project(":source:base"))
-    debugImplementation(libs.androidx.ui.tooling)
-    debugImplementation(libs.androidx.ui.test.manifest)
 
+    implementation(libs.retrofit)
     implementation(libs.dagger)
     ksp(libs.daggerCompiler)
-
-    implementation(libs.kotlin.stdlib)
-    implementation(libs.retrofit)
-
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.androidx.activity.compose)
-    implementation(libs.androidx.material3)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

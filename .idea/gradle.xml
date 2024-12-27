@@ -12,6 +12,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/source" />
+            <option value="$PROJECT_DIR$/source/base" />
             <option value="$PROJECT_DIR$/source/core" />
             <option value="$PROJECT_DIR$/source/core/core_api" />
             <option value="$PROJECT_DIR$/source/core/core_factory" />

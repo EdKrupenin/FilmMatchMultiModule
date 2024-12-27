@@ -10,6 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
+import com.keo.source.base.di.BaseComponent
 import com.keo.source.core.core_api.AppWithApplicationComponent
 import com.keo.source.core.core_api.FeatureApi
 import com.keo.source.core.core_api.FeatureApiMap
@@ -30,6 +31,8 @@ class MainActivity : ComponentActivity() {
             (application as AppWithApplicationComponent).getApplicationComponentProvider()
 
         MainActivityComponent.create(appWithApplicationComponent).inject(this)
+        BaseComponent.create(appWithApplicationComponent)
+
         enableEdgeToEdge()
         setContent {
             val navController = rememberNavController()
