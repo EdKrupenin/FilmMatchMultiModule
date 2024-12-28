@@ -5,6 +5,8 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import com.keo.genres_api.GenresFeatureApi
+import com.keo.genres_impl.di.GenresFeatureComponent
+import com.keo.source.base.di.BaseComponentProvider
 import com.keo.source.core.core_api.AppProvider
 import javax.inject.Inject
 
@@ -12,8 +14,15 @@ class GenresFeatureImpl @Inject constructor(
     appProvider: AppProvider
 ) : GenresFeatureApi {
 
-    init {
+    private var viewModel: GenresFeatureVM
 
+    init {
+        val context = appProvider.provideContext()
+        val baseComponent = (context as? BaseComponentProvider)?.provideBaseComponent()
+            ?: throw IllegalStateException("Context does not implement BaseComponentProvider")
+        val featureComponent = GenresFeatureComponent.create(baseComponent).also { it.inject(this) }
+
+        viewModel = featureComponent.viewModelFactory().create()
     }
 
     override fun baseRoute(): String = "genres_screen"
@@ -26,7 +35,7 @@ class GenresFeatureImpl @Inject constructor(
         navGraphBuilder.composable(baseRoute()) {
             GenresScreen(onNavigateToABFlow = {
                 navController.navigate("scenarioABRoute")
-            }, modifier = modifier)
+            }, modifier = modifier, viewModel = viewModel)
         }
     }
 }

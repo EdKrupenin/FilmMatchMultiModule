@@ -11,6 +11,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.keo.source.base.di.BaseComponent
+import com.keo.source.base.di.BaseComponentProvider
 import com.keo.source.core.core_api.AppWithApplicationComponent
 import com.keo.source.core.core_api.FeatureApi
 import com.keo.source.core.core_api.FeatureApiMap
@@ -20,9 +21,11 @@ import com.keo.source.home.home_api.HomeFeatureApi
 import com.keo.source.main.di.MainActivityComponent
 import javax.inject.Inject
 
-class MainActivity : ComponentActivity() {
+class MainActivity : ComponentActivity(), BaseComponentProvider {
     @Inject
     lateinit var featureApis: FeatureApiMap
+    lateinit var baseComponent: BaseComponent
+        private set
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +34,7 @@ class MainActivity : ComponentActivity() {
             (application as AppWithApplicationComponent).getApplicationComponentProvider()
 
         MainActivityComponent.create(appWithApplicationComponent).inject(this)
-        BaseComponent.create(appWithApplicationComponent)
+        baseComponent = BaseComponent.create(appWithApplicationComponent)
 
         enableEdgeToEdge()
         setContent {
@@ -58,4 +61,6 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+
+    override fun provideBaseComponent(): BaseComponent = baseComponent
 }

@@ -40,6 +40,8 @@ dependencies {
     implementation(project(":source:ui_kit"))
     implementation(libs.dagger)
     implementation(libs.androidx.navigation.compose)
+    implementation(project(":source:base"))
+    implementation(libs.androidx.foundation.android)
     ksp(libs.daggerCompiler)
 
     implementation(libs.androidx.core.ktx)

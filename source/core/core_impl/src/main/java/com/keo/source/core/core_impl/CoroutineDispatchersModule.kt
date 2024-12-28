@@ -24,8 +24,4 @@ object CoroutineDispatchersModule {
     @MainDispatcher
     @Provides
     fun providesMainDispatcher(): CoroutineDispatcher = Dispatchers.Main
-
-//    @Singleton
-//    @Binds
-//    fun bindCoroutineDispatchersProvider(impl: CoroutineDispatchersProviderImp): CoroutineDispatchersProvider
 }

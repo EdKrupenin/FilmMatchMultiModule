@@ -6,7 +6,6 @@ import com.keo.source.base.NetworkApi
 import com.keo.source.base.SwipeCacheImpl
 import com.keo.source.base.SwipeRepositoryImpl
 import com.keo.source.core.core_api.Cache
-import com.keo.source.core.core_api.CacheProvider
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -20,7 +19,7 @@ interface BaseModule {
             retrofit.create(NetworkApi::class.java)
     }
     @Binds
-    fun bindSwipeCache(impl: SwipeCacheImpl): CacheProvider<DataType, List<Any>>
+    fun bindSwipeCache(impl: SwipeCacheImpl): Cache<DataType, List<Any>>
     @Binds
     fun bindGenreRepository(impl: SwipeRepositoryImpl): GenreRepository
 }
